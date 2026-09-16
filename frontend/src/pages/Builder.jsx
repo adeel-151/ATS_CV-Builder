@@ -8,6 +8,7 @@ import { PersonalInfoForm } from '@/components/cv-forms/PersonalInfoForm';
 import { ExperienceForm } from '@/components/cv-forms/ExperienceForm';
 import { EducationForm } from '@/components/cv-forms/EducationForm';
 import { SkillsForm } from '@/components/cv-forms/SkillsForm';
+import { DesignForm } from '@/components/cv-forms/DesignForm';
 import { PreviewComponent } from '@/components/PreviewComponent';
 
 // This wrapper component tracks the form values for the live preview
@@ -125,6 +126,14 @@ export default function Builder() {
 
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-8 pb-10">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 transition-all hover:shadow-md">
+              <h3 className="font-bold text-xl text-slate-800 border-b border-slate-100 pb-3 mb-5 flex items-center gap-2">
+                <span className="bg-indigo-100 text-indigo-700 w-8 h-8 rounded-full flex items-center justify-center text-sm">✦</span>
+                Design & Layout
+              </h3>
+              <DesignForm />
+            </div>
+
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 transition-all hover:shadow-md">
               <h3 className="font-bold text-xl text-slate-800 border-b border-slate-100 pb-3 mb-5 flex items-center gap-2">
                 <span className="bg-blue-100 text-blue-700 w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span>

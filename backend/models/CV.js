@@ -5,6 +5,8 @@ const cvSchema = new mongoose.Schema({
   title: { type: String, default: 'Untitled CV' },
   locale: { type: String, default: 'en' },
   is_public: { type: Boolean, default: false },
+  design_template: { type: String, default: 'modern' },
+  font_family: { type: String, default: 'Inter' },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
   
