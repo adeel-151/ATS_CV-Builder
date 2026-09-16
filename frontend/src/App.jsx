@@ -1,10 +1,8 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
+import Home from './pages/Home';
 import Builder from './pages/Builder';
 import { Navbar } from './components/Navbar';
 
@@ -21,10 +19,7 @@ function App() {
       <div className="min-h-screen bg-slate-50 font-sans antialiased text-foreground">
         <Navbar />
         <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Home />} />
           <Route path="/builder/:id" element={<Builder />} />
         </Routes>
       </div>

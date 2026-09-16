@@ -5,16 +5,10 @@ import { Button } from '@/components/ui/button';
 export function Navbar() {
   const { i18n } = useTranslation();
   const navigate = useNavigate();
-  const isAuthenticated = !!localStorage.getItem('token');
 
   const toggleLanguage = () => {
     const newLang = i18n.language === 'en' ? 'ur' : 'en';
     i18n.changeLanguage(newLang);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
   };
 
   return (
@@ -30,11 +24,6 @@ export function Navbar() {
             <Button variant="ghost" onClick={toggleLanguage} className="rounded-full px-6 font-semibold">
               {i18n.language === 'en' ? 'اردو' : 'English'}
             </Button>
-            {isAuthenticated && (
-              <Button variant="outline" onClick={handleLogout} className="border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700">
-                Logout
-              </Button>
-            )}
           </div>
         </div>
       </div>

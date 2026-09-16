@@ -3,15 +3,11 @@ const puppeteer = require('puppeteer');
 const ejs = require('ejs');
 const path = require('path');
 const CV = require('../models/CV');
-const authMiddleware = require('../middleware/authMiddleware');
-
 const router = express.Router();
-
-router.use(authMiddleware);
 
 router.get('/:id/export/pdf', async (req, res) => {
   try {
-    const cv = await CV.findOne({ _id: req.params.id, user_id: req.user.userId });
+    const cv = await CV.findOne({ _id: req.params.id });
     if (!cv) {
       return res.status(404).json({ message: 'CV not found' });
     }

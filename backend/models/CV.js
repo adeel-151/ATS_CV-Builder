@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const cvSchema = new mongoose.Schema({
-  user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+  user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false },
   title: { type: String, default: 'Untitled CV' },
   locale: { type: String, default: 'en' },
   is_public: { type: Boolean, default: false },

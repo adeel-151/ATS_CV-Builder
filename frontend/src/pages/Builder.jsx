@@ -34,14 +34,7 @@ export default function Builder() {
   useEffect(() => {
     const fetchCv = async () => {
       try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          navigate('/login');
-          return;
-        }
-        const res = await axios.get(`${apiUrl}/cv/${id}`, {
-          headers: { Authorization: `Bearer ${token}` }
-        });
+        const res = await axios.get(`${apiUrl}/cv/${id}`);
         methods.reset(res.data);
         setLoading(false);
       } catch (error) {
@@ -53,10 +46,7 @@ export default function Builder() {
 
   const onSubmit = async (data) => {
     try {
-      const token = localStorage.getItem('token');
-      await axios.put(`${apiUrl}/cv/${id}`, data, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      await axios.put(`${apiUrl}/cv/${id}`, data);
       alert('CV saved successfully!');
     } catch (error) {
       console.error('Failed to save CV', error);
@@ -66,9 +56,7 @@ export default function Builder() {
 
   const handleExportPDF = async () => {
     try {
-      const token = localStorage.getItem('token');
       const response = await axios.get(`${apiUrl}/cv/${id}/export/pdf`, {
-        headers: { Authorization: `Bearer ${token}` },
         responseType: 'blob'
       });
       
@@ -87,9 +75,7 @@ export default function Builder() {
 
   const handleExportXML = async () => {
     try {
-      const token = localStorage.getItem('token');
       const response = await axios.get(`${apiUrl}/cv/${id}/export/xml`, {
-        headers: { Authorization: `Bearer ${token}` },
         responseType: 'blob'
       });
       
