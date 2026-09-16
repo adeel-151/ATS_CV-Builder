@@ -37,7 +37,7 @@ mongoose.connect(process.env.MONGO_URI)
     console.log(`Server is running on port ${PORT}`);
     
     // Keep-alive ping for Render
-    const url = process.env.RENDER_EXTERNAL_URL;
+    const url = process.env.RENDER_EXTERNAL_URL || 'https://ats-cv-builder.onrender.com/';
     if (url) {
       setInterval(() => {
         https.get(url, (res) => {
