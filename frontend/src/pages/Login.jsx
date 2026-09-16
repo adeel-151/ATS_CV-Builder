@@ -11,7 +11,7 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://ats-cv-builder.onrender.com/api';
       const res = await axios.post(`${apiUrl}/auth/login`, { email, password });
       localStorage.setItem('token', res.data.token);
       navigate('/dashboard');

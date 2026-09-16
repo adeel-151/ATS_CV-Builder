@@ -10,7 +10,7 @@ export default function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://ats-cv-builder.onrender.com/api';
       await axios.post(`${apiUrl}/auth/register`, { email, password });
       navigate('/login');
     } catch (error) {

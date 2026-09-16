@@ -20,7 +20,7 @@ export default function Builder() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+  const apiUrl = import.meta.env.VITE_API_URL || 'https://ats-cv-builder.onrender.com/api';
 
   const methods = useForm({
     defaultValues: {

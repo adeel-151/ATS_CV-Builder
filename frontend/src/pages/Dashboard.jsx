@@ -14,7 +14,7 @@ export default function Dashboard() {
           navigate('/login');
           return;
         }
-        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+        const apiUrl = import.meta.env.VITE_API_URL || 'https://ats-cv-builder.onrender.com/api';
         const res = await axios.get(`${apiUrl}/cv`, {
           headers: { Authorization: `Bearer ${token}` }
         });
@@ -49,7 +49,7 @@ export default function Dashboard() {
           className="group relative bg-slate-50/50 border-2 border-dashed border-slate-300 rounded-2xl p-6 flex flex-col items-center justify-center cursor-pointer hover:border-blue-400 hover:bg-blue-50/50 transition-all min-h-[160px]"
           onClick={async () => {
              const token = localStorage.getItem('token');
-             const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+             const apiUrl = import.meta.env.VITE_API_URL || 'https://ats-cv-builder.onrender.com/api';
              const res = await axios.post(`${apiUrl}/cv`, { title: 'New Europass CV' }, { headers: { Authorization: `Bearer ${token}` } });
              navigate(`/builder/${res.data._id}`);
           }}
