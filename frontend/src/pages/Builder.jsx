@@ -20,6 +20,7 @@ export default function Builder() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
   const methods = useForm({
     defaultValues: {
@@ -37,7 +38,7 @@ export default function Builder() {
           navigate('/login');
           return;
         }
-        const res = await axios.get(`http://localhost:5000/api/cv/${id}`, {
+        const res = await axios.get(`${apiUrl}/cv/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         methods.reset(res.data);
@@ -52,7 +53,7 @@ export default function Builder() {
   const onSubmit = async (data) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/cv/${id}`, data, {
+      await axios.put(`${apiUrl}/cv/${id}`, data, {
         headers: { Authorization: `Bearer ${token}` }
       });
       alert('CV saved successfully!');
@@ -65,7 +66,7 @@ export default function Builder() {
   const handleExportPDF = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:5000/api/cv/${id}/export/pdf`, {
+      const response = await axios.get(`${apiUrl}/cv/${id}/export/pdf`, {
         headers: { Authorization: `Bearer ${token}` },
         responseType: 'blob'
       });
@@ -86,7 +87,7 @@ export default function Builder() {
   const handleExportXML = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get(`http://localhost:5000/api/cv/${id}/export/xml`, {
+      const response = await axios.get(`${apiUrl}/cv/${id}/export/xml`, {
         headers: { Authorization: `Bearer ${token}` },
         responseType: 'blob'
       });
