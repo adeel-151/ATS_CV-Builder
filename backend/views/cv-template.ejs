@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="<%= cv.locale %>" dir="<%= cv.locale === 'ur' ? 'rtl' : 'ltr' %>">
+<head>
+  <meta charset="UTF-8">
+  <title><%= cv.title %></title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 40px;
+      color: #333;
+    }
+    .header {
+      border-bottom: 2px solid #004494;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    .name {
+      font-size: 32px;
+      color: #004494;
+      margin: 0;
+    }
+    .section-title {
+      color: #004494;
+      font-size: 20px;
+      border-bottom: 1px solid #ccc;
+      margin-top: 30px;
+      padding-bottom: 5px;
+    }
+    .item {
+      margin-bottom: 15px;
+    }
+    .item-title {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .item-subtitle {
+      font-style: italic;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1 class="name"><%= cv.profile?.first_name || '' %> <%= cv.profile?.last_name || '' %></h1>
+    <p>
+      <%= cv.profile?.email || '' %> | <%= cv.profile?.phone || '' %> | <%= cv.profile?.city || '' %>, <%= cv.profile?.country || '' %>
+    </p>
+  </div>
+
+  <% if (cv.work_experience && cv.work_experience.length > 0) { %>
+    <h2 class="section-title">Work Experience</h2>
+    <% cv.work_experience.forEach(exp => { %>
+      <div class="item">
+        <div class="item-title"><%= exp.job_title %> at <%= exp.employer %></div>
+        <div class="item-subtitle"><%= exp.start_date %> - <%= exp.currently_working ? 'Present' : exp.end_date %> | <%= exp.city %>, <%= exp.country %></div>
+        <p><%= exp.activities %></p>
+      </div>
+    <% }) %>
+  <% } %>
+
+  <% if (cv.education && cv.education.length > 0) { %>
+    <h2 class="section-title">Education and Training</h2>
+    <% cv.education.forEach(edu => { %>
+      <div class="item">
+        <div class="item-title"><%= edu.degree %></div>
+        <div class="item-subtitle"><%= edu.institution %> | <%= edu.start_date %> - <%= edu.end_date %></div>
+        <p><%= edu.activities %></p>
+      </div>
+    <% }) %>
+  <% } %>
+  
+  <% if (cv.skills && cv.skills.length > 0) { %>
+    <h2 class="section-title">Skills</h2>
+    <ul>
+    <% cv.skills.forEach(skill => { %>
+      <li><strong><%= skill.category %>:</strong> <%= skill.description %> (<%= skill.proficiency %>)</li>
+    <% }) %>
+    </ul>
+  <% } %>
+</body>
+</html>
